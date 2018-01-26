@@ -5481,7 +5481,7 @@ fclose(fid);
             if nargin < 4
                 show_map = true;
             end            
-            yl = (median(median(sztd, 'omitnan'), 'omitnan') + ([-6 6]) .* median(std(sztd, 'omitnan'), 'omitnan')) * 1e2;
+            yl = (median(median(sztd, 'omitnan'), 'omitnan') + ([-3 3]) .* median(std(sztd, 'omitnan'), 'omitnan')) * 1e2;
             
             subplot(3,1,3);
             plot(t, sztd * 1e2,'.'); hold on;
@@ -5506,7 +5506,7 @@ fclose(fid);
             if show_map
                 td = nan(size(ep));
                 hm = imagesc(e_grid, n_grid, reshape(td(:), numel(n_grid), numel(e_grid))); hold on;
-                hm.AlphaData = 0.5;
+                hm.AlphaData = 0.9;
                 ax_sky.YDir = 'normal';
             end
             hs = polarScatter(az, el, 250, sztd(i,:) * 1e2, 'filled');
@@ -5654,9 +5654,10 @@ fclose(fid);
             xlim(t(time_start) + [0 win_size-1] ./ 86400);
             setTimeTicks(4,'dd/mm/yyyy HH:MMPM');
             h = ylabel('ZTD [m]'); h.FontWeight = 'bold';
-            grid on;repmat([1:2880]',31)
+            grid on;
             h = title(sprintf('Receiver %s ZTD', this.marker_name),'interpreter', 'none'); h.FontWeight = 'bold'; h.Units = 'pixels'; h.Position(2) = h.Position(2) + 8; h.Units = 'data';
         end
+        
         function plotResidual(this)
             figure
             t = 1:this.time.length;
