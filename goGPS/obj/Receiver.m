@@ -3499,7 +3499,7 @@ classdef Receiver < Exportable_Object
         function importOceanLoading(this)
             %DESCRIPTION: load ocean loading displcement matrix from
             %ocean_loading.blq if satation is present
-            this.ocean_load_disp = load_BLQ( this.state.getOceanFile,{this.getShortName()});
+            this.ocean_load_disp = load_BLQ( this.state.getOceanFile,{this.marker_name});
             if isempty(this.ocean_load_disp)
                 this.ocean_load_disp == -1; %mean not found
             end
